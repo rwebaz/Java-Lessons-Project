@@ -1,11 +1,8 @@
 
 public class Main {
-
-		/**
-		 * @param args
-		 */
 	
 		public static void main(String[] args) {
+			
 			FortuneTeller fortuneTeller = new FortuneTeller();
 			
 			String myFortune;
@@ -21,6 +18,8 @@ public class Main {
 				
 			myFortune = fortuneTeller.tellPersonalLongLastingFortune("Robert", 20);
 				System.out.println(myFortune);
+				
+			return;
 				
 		}
 }
