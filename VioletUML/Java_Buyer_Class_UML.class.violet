@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.7.0_51" class="java.beans.XMLDecoder">
+ <object class="com.horstmann.violet.ClassDiagramGraph">
+  <void method="addNode">
+   <object class="com.horstmann.violet.ClassNode">
+    <void property="bounds">
+     <object class="java.awt.geom.Rectangle2D$Double">
+      <void method="setRect">
+       <double>10.0</double>
+       <double>10.0</double>
+       <double>540.0</double>
+       <double>120.0</double>
+      </void>
+     </object>
+    </void>
+    <void property="attributes">
+     <void property="text">
+      <string>Product Names Selected
+Product Names Purchased in the Past
+Product Names New</string>
+     </void>
+    </void>
+    <void property="methods">
+     <void property="text">
+      <string>Expose the name(s) of the product(s) selected by the buyer(s)
+Expose the name(s) of product(s) purchased in the past by the buyer(s)
+Expose the name(s) of product(s) new that the buyer(s) have purchased in the recent past</string>
+     </void>
+    </void>
+    <void property="name">
+     <void property="text">
+      <string>Buyer</string>
+     </void>
+    </void>
+   </object>
+   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double0">
+    <void class="java.awt.geom.Point2D$Double" method="getField">
+     <string>x</string>
+     <void method="set">
+      <object idref="Point2D$Double0"/>
+      <double>10.0</double>
+     </void>
+    </void>
+    <void class="java.awt.geom.Point2D$Double" method="getField">
+     <string>y</string>
+     <void method="set">
+      <object idref="Point2D$Double0"/>
+      <double>10.0</double>
+     </void>
+    </void>
+    <void method="setLocation">
+     <double>10.0</double>
+     <double>10.0</double>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>
