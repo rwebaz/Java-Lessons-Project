@@ -12,7 +12,7 @@ public class BidBook {
 		public String projectIntro;
 	
 	// The Integer variable 'bid' of the BidBook class
-		public int i;
+		public int bid;
 		
 	// Declare the variable 'lowBid' of Integer type
 		public int lowBid;
@@ -121,8 +121,6 @@ public class BidBook {
 		
 		public Object setBidsArray(int[] bidsArray) {
 			
-			
-			
 			//write progress to the console
 			System.out.println("The Object array 'bidsArray' has been initialized to the Object reference: " + bidsArray);
 			
@@ -166,7 +164,7 @@ public class BidBook {
 				System.out.println("The current value of 'lowBid' is equal to " + getLowBid(lowBid) + ".");
 				System.out.println("=========================================================");
 							
-				if( bidsArray[i] < getLowBid(lowBid) ) {
+				if( bidsArray[i] < lowBid ) {
 					
 					int bid = bidsArray[i];
 					
