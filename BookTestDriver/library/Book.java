@@ -116,12 +116,14 @@ public class Book {
 		}
 		
 		// Establish the 'whatBook' other method to return the title, author, isbn, and price of a new book instance
-			public void whatBook() {
+			public String whatBook() {
+				
+				System.out.println("=================================================");
 				// Write progress to the console
 				System.out.println("" + title + ", a book by " + author + " has an ISBN number of " + isbn + ".");
 				System.out.println("The price of " + title + " is $" + price + " USD.");
-				System.out.println("=================================================");
-					return;
+				
+					return title + author + isbn;
 		}
 		
 		// Establish the 'printArrayTitleAuthor' other method to return the title and author of each book instance
