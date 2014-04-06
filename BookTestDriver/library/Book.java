@@ -4,6 +4,13 @@ import java.util.ArrayList;
 
 public class Book {
 	
+	/* Note: Variables declared within methods are deemed 'local' variables.
+	 * Note: Variables declared outside of methods are deemed to be 'instance' variables
+	 * =================================================================================
+	 * Note: Variables declared as 'class' variables are available class-wide.
+	 * Note: Class variables are identified as 'static' String(s), int(s), and double(s), not 'public'.
+	 */
+	
 	// Declare the class variables of the 'Book' class
 	
 		// The title of each instance of the subject 'Book' class
@@ -106,7 +113,7 @@ public class Book {
 	
 	// Declare the Object ArrayList 'booksList' for both string data and double integer data
 			
-			ArrayList<Book> booksList;
+			public ArrayList<Book> booksList;
 	
 	// Declare the other methods of the 'Book' class
 		
@@ -126,21 +133,30 @@ public class Book {
 					return title + author + isbn;
 		}
 		
-		// Establish the 'printArrayTitleAuthor' other method to return the title and author of each book instance
-			public void printArrayTitleAuthor(String[][] booksArrayData) {
-				for (int i = 0; i < booksArrayData.length; i++) {
-					// Write progress to the console
-					System.out.println("" + title + ", a book by " + author + ".");
-					System.out.println("=================================================");
-					return;
-				}
-		}
+//		// Establish the 'printArrayTitleAuthor' other method to return the title and author of each book instance
+//			public void printArrayTitleAuthor(String[][] booksArrayData) {
+//				for (int i = 0; i < booksArrayData.length; i++) {
+//					// Write progress to the console
+//					System.out.println("" + title + ", a book by " + author + ".");
+//					System.out.println("=================================================");
+//					return;
+//				}
+//		}
+//			
+//		// Establish the 'printArrayListTitleAuthor' other method to return the title and author of each book instance
+//			public void printArrayListTitleAuthor(String[][] booksArrayData) {
+//				for(int row = 0; row < booksArrayData.length; row++) {
+//					for (int column = 0; column < booksArrayData[row].length; column++ );
+//						System.out.println();
+//				}
 			
-		// Establish the 'printArrayListTitleAuthor' other method to return the title and author of each book instance
-			public void printArrayListTitleAuthor(String[][] booksArrayData) {
-				for(int row = 0; row < booksArrayData.length; row++) {
-					for (int column = 0; column < booksArrayData[row].length; column++ );
-						System.out.println();
-				}
+		// Set up an over-ride to require String representation for each of the four class variables
+			
+			@Override
+			   public String toString() {
+			        return ("Title of Book:"+this.getTitle(title))+
+			                    " Author: "+ this.getAuthor(author) +
+			                    " ISBN: "+ this.getIsbn(isbn) +
+			                    " Price : " + this.getPrice(price);
 		}
 }
