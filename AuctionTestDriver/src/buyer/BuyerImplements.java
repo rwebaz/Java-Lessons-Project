@@ -25,9 +25,17 @@ public class BuyerImplements implements BuyerInterface {
 		/* Rename the instance variables to accommodate constructor this and to...
 		 * instantiate the variables as local within the method 'BuyerImplements' */
 				
+			this.productName = product;
+			this.productId = product;
+			this.productPrice = product;
+			
 			productName = product;
 			productId = product;
 			productPrice = product;
+			
+			this.buyerName = b_name;
+			this.buyerId = b_id;
+			this.buyerLimit = b_limit;
 			
 			buyerName = b_name;
 			buyerId = b_id;
