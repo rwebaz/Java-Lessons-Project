@@ -1,5 +1,0 @@
-package auction;
-
-//@author {
-//	rwebaz;
-//}

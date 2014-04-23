@@ -2,9 +2,10 @@ package buyer;
 
 public class Buyer {
 	
-	/* Note: Variables declared outside of methods are deemed to be 'instance' or 'class' variables and as such...
-	 * can be used within the class. Therefore, variables declared as 'class' variables are available class-wide.
-	 * Class variables are identified as 'static' or 'protected' String(s), int(s), and double(s), not 'public'. */
+	/* Note: Variables declared outside of methods are deemed to be 'instance' or 'class' variables...
+	 * And, as such can be used within the class. Thus, variables declared as 'class' variables are available class-wide.*/
+	
+	// Note: Class variables are identified as 'static' or 'protected' String(s), int(s), and double(s), not 'public'. 
 	
 	// Declare the class or 'instance' variables of the 'Buyer' class
 	
@@ -39,7 +40,7 @@ public class Buyer {
 	// Give other methods the right to 'read from' or 'get' the variable 'buyerName' from the Buyer class
 			public String getBuyerType() {
 				return buyerType;
-						}
+			}
 	// Declare the setter methods of the 'Buyer' class
 			
 	// Give other methods the right to 'write to' or 'set' the variable 'buyerName' from the Buyer class
