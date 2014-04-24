@@ -1,6 +1,6 @@
 package buyer;
 
-import product.Product;
+import product.Product_class_old;
 
 public class BuyerImplements implements BuyerInterface {
 	
@@ -8,19 +8,19 @@ public class BuyerImplements implements BuyerInterface {
 	
 	// Declare the 'instance' variables accessible to the class
 	
-		protected Product productName;
-		protected Product productId;
-		protected Product productPrice;
+		protected Product_class_old productName;
+		protected Product_class_old productId;
+		protected Product_class_old productPrice;
 		
 		protected String buyerName;
 		protected String buyerId;
 		protected int buyerLimit;
 		
 		protected String itemName;
-		protected Product itemProduct;
+		protected Product_class_old itemProduct;
 			
 	// Create a constructor
-		public BuyerImplements(String b_name, String b_id, int b_limit, Product product) {
+		public BuyerImplements(String b_name, String b_id, int b_limit, Product_class_old product) {
 			
 		/* Rename the instance variables to accommodate constructor this and to...
 		 * instantiate the variables as local within the method 'BuyerImplements' */
@@ -42,15 +42,25 @@ public class BuyerImplements implements BuyerInterface {
 			buyerLimit = b_limit;
 	}
 		
-	public Product getProduct() {
+	public Product_class_old getProduct() {
+		
+		
+		
 		return null;
+	}
+	
+	public void getBuyer() {
+		System.out.println("The new Buyer's name is " + this.getBuyerName() +
+				"; Seller ID: " + this.getBuyerId() +
+				"; USD Limit: $" + this.getBuyerLimit() + ".");
+		System.out.println("==================================================================================================");
 	}
 
 	public boolean provideProduct(String productName) {
 		return false;
 	}
 
-	public Product sellProduct() {
+	public Product_class_old sellProduct() {
 		return null;
 	}
 		

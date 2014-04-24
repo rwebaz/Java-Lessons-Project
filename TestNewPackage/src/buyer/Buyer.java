@@ -2,8 +2,9 @@ package buyer;
 
 public class Buyer {
 	
-	/* Note: Variables declared outside of methods are deemed to be 'instance' or 'class' variables and as such...
-	 * can be used within the class. Thus, variables declared as 'class' variables are available class-wide. */
+	/* Note: Variables declared outside of methods are deemed to be 'instance' or 'class' variables..
+	 * And, as such can be used within the class.
+	 * Thus, variables declared as 'class' variables are available class-wide. */
 	
 	// Class variables are identified as 'static' or 'protected' String(s), int(s), and double(s), not 'public'. */
 	
@@ -69,3 +70,4 @@ public class Buyer {
 				this.buyerLimit = buyerLimit;
 			}
 }
+

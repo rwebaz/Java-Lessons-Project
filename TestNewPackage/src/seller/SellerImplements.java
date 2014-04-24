@@ -1,67 +1,72 @@
 package seller;
 
+/**
+ * The 'SellerImplements' class is a re-write of the given (old) 'SellerImpl' class
+ * @param 1si.) String name - An object string parameter derived from the original (old) 'SellerImpl' class,
+ * now equal to the variable 'itemName'
+ * @param 2si.) Product product - An object product parameter derived from the original (old) 'SellerImpl' class,
+ * now equal to the variable 'itemProduct'
+ * @author rwebaz http://about.me/rwebaz */
+
 import product.Product;
 
-public class SellerImplements implements SellerInterface {
+public class SellerImplements extends Seller implements SellerInterface {
 	
 	// This class implements the SellerInterface
-	
-	// Declare the 'instance' variables accessible to the class
-	
-		protected static String productName;
-		protected static String productId;
-		protected static double productPrice;
 		
-		protected static String sellerName;
-		protected static String sellerId;
-		protected static int sellerLimit;
+	// The original 'instance' variables form the (old) 'SellerImpl' class
+		
+		protected static String name;
+		protected static Product product;
+		
+	// A re-naming of the original 'instance' variables form the (old) 'SellerImpl' class
 		
 		protected static String itemName;
 		protected static Product itemProduct;
 		
-	// Create a constructor
+	// Create a primary constructor
 		
-		public SellerImplements(String s_name, String s_id, int s_limit, String p_name, String p_id, double p_price) {
+		public SellerImplements(String name, Product product) {
+			super(sellerName, sellerId, sellerLimit);
+			
+		/* Rename the instance variables of the 'SellerImplements' secondary constructor method...
+		 * To accommodate keyword 'this' and to...
+		 * Instantiate the variables as local within the primary constructor method 'SellerImplements' */
+			
+			itemName = name;
+			itemProduct = product;
+
+		}
 		
-		/* Rename the instance variables to accommodate constructor this and to...
-		 * instantiate the variables as local within the method 'SellerImplements' */
+	
+		
 			
-			productName = p_name;
-			productId = p_id;
-			productPrice = p_price;
-			
-			sellerName = s_name;
-			sellerId = s_id;
-			sellerLimit = s_limit;
+	// A new method
+	
+	public void getSeller() {
+		System.out.println("The new Seller's name is " + this.getSellerName() +
+				"; Seller ID: " + this.getSellerId() +
+				"; USD Limit: $" + this.getSellerLimit() + ".");
+		System.out.println("===============================================================================");
 	}
-
-	public Product getProduct() {
-		return null;
-	}
-
-	public boolean provideProduct(String productName) {
-		return false;
-	}
-
-	public Product sellProduct() {
-		return null;
-	}
+	
 	
 	// per contract w interface 'SellerInterface'
 	@Override
 	public String getSellerName() {
-		return sellerName;
+		return this.getSellerName();
+		//more to come;
 	}
 	
 	// per contract w interface 'SellerInterface'
 	@Override
 	public String getSellerId() {
-		return sellerId;
+		return this.getSellerId();
 	}
 	
 	// per contract w interface 'SellerInterface'
 	@Override
 	public int getSellerLimit() {
-		return sellerLimit;
+		return this.getSellerLimit();
 	}
 }

@@ -5,7 +5,7 @@ package product;
  * @author rwebaz
  **/
 
-public class Product_old {
+public class Product_class_old {
 	
 	/* Note: Variables declared outside of methods are deemed to be 'instance' or 'class' variables.
 	 * And, as such can be used within the class. Thus, variables declared as 'class' variables are available class-wide. */
@@ -20,9 +20,9 @@ public class Product_old {
 	// The item price for each product declared within an instance of the 'Product_old' class
 		protected double itemPrice;
 		
-	// Create the constructor for all future instances of the Product_old class
+	// Create the primary constructor for all future instances of the Product_old class
 	
-	public Product_old(String name, double price) {
+	public Product_class_old(String name, double price) {
 		
 		/* Rename the class variables to accommodate constructor this and to...
 		instantiate the variables as 'local' variables of the constructor method Product_old */

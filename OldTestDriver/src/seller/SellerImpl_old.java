@@ -1,8 +1,8 @@
 package seller;
 
-import product.Product;
+import product.Product_class_old;
 
-public class SellerImpl_old implements Seller_old {
+public class SellerImpl_old extends Seller_class_old implements Seller_interface_old {
 	
 	/* Note: Variables declared outside of methods are deemed to be 'instance' or 'class' variables.
 	 * And, as such can be used within the class. Thus, variables declared as 'class' variables are available class-wide. */
@@ -12,12 +12,12 @@ public class SellerImpl_old implements Seller_old {
 	// Declare the class or 'instance' variables of the 'SellerImpl_old' class
 	
 		protected String name;
-		protected Product product;
+		protected Product_class_old product;
 
 	// TODO: Complete this constructor
 	
-	public SellerImpl_old(String name, Product product) {
-		
+	public SellerImpl_old(String name, Product_class_old product) {
+		super(sellerName, sellerId, sellerLimit);
 		/* Rename the instance variables to accommodate constructor this and to...
 		 * instantiate the variables as local within the method 'SellerImplements' */
 
@@ -28,7 +28,7 @@ public class SellerImpl_old implements Seller_old {
 		return name;
 	}
 
-	public Product getProduct() {
+	public Product_class_old getProduct() {
 		return null;
 	}
 
@@ -36,7 +36,7 @@ public class SellerImpl_old implements Seller_old {
 		return false;
 	}
 
-	public Product sellProduct() {
-		return null;
+	public Product_class_old sellProduct() {
+		return product;
 	}
 }
