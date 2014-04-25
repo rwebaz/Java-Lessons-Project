@@ -2,11 +2,19 @@ package seller;
 
 /**
  * The 'ShoeMaker' class extends and overrides the 'Seller' class
+ * ================================================================================
  * 'Joe the Shoe Maker' is a merchandise seller who specializes in the category of 'Shoes'.
- * Per original @author Deny Morlino the @param name (the parameter 'name') of the ShoeMaker class is also the 'product' name
- * However, this @author rwebaz http://about.me/rwebaz chooses to change the @param name to be the 'product' category
- * This way, when a seller comes knocking, the seller must declare the category they wish to trade in either as a buyer or a seller.
- *  */
+ * ================================================================================
+ * Per original @author Deny Morlino the @param name (the parameter 'name') of the ShoeMaker class...
+ * Is also the 'product' name
+ * ================================================================================
+ * However, this author chooses to change the @param name to be...
+ * The 'product' category
+ * ================================================================================
+ * This way, when a seller comes knocking, the seller must declare the category they wish to trade...
+ * in either as a buyer or a seller.
+ * ================================================================================
+ * @author rwebaz http://about.me/rwebaz */
 
 public class ShoeMaker extends Seller {
 	

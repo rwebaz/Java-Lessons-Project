@@ -1,10 +1,12 @@
 package product;
 
 /**
- * This class 'Product' starts off with the given parameters and primary constructor of the 'Product_old' class.
- * Yet, melds new parameters by way of the 'ExtendProduct' subclass
- * @author rwebaz http://about.me/rwebaz
- **/
+ * This class 'Product' starts off with the given parameters and primary constructor...
+ * of the 'Product_old' class.
+ * ============================================================================================
+ * Yet, melds new parameters by way of the 'ProductImplements' subclass
+ * ============================================================================================
+ * @author rwebaz http://about.me/rwebaz */
 
 public class Product {
 	
@@ -77,6 +79,5 @@ public class Product {
 			}
 			
 	// Other methods
-			
 			
 }

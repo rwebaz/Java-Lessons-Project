@@ -6,11 +6,14 @@ package product;
  * =========================================================================
  * @param 1p.) String p_name - A string parameter derived from the new Product class that represents...
  * any given product name, now equal to the variable 'productName'
+ * =========================================================================
  * @param 2p.) String p_id - A string parameter derived from the new Product class that represents...
  * any given product's identification schematic, now equal to the variable 'productId'
+ * =========================================================================
  * @param 3p.) double p_price - A primitive real (decimal) number parameter (8-bytes = 64 bits) derived from...
  * the new Product class that represents any given product's assigned gross price,
  * now equal to the variable 'productPrice'
+ * =========================================================================
  * @author rwebaz http://about.me/rwebaz */
 
 public class ProductImplements extends Product implements ProductInterface {

@@ -15,8 +15,6 @@ package seller;
  * ============================================================================================
  * @author Subsequent: rwebaz http://about.me/rwebaz */
 
-
-
 public class JoeBaker extends Seller {
 	
 	protected String name;
