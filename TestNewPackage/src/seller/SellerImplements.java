@@ -1,48 +1,53 @@
 package seller;
 
 /**
- * The 'SellerImplements' class is a re-write of the given (old) 'SellerImpl' class
- * @param 1si.) String name - An object string parameter derived from the original (old) 'SellerImpl' class,
- * now equal to the variable 'itemName'
- * @param 2si.) Product product - An object product parameter derived from the original (old) 'SellerImpl' class,
- * now equal to the variable 'itemProduct'
+ * The 'SellerImplements' class is a re-write of the given (old) 'SellerImpl_old' class.
+ * ====================================================================================================
+ * The 'SellerImplements' class extends the base Seller class, and implements the SellerInterface class.
+ * ====================================================================================================
+ * @param 1si.) String s_name - An object string parameter that represents the seller's name,
+ * now equal to the variable 'sellerName'
+ * ====================================================================================================
+ * @param 2si.) String s_id - A object string parameter that represents the seller's identification schematic,
+ * now equal to the variable 'sellerId'
+ * ====================================================================================================
+ * @param 3si.) int s_limit - A primitive integer parameter (4-bytes = 32 bits) that represents...
+ * the seller's assigned credit or gross dollar bid limit, now equal to the variable 'sellerLimit'
+ * ====================================================================================================
  * @author rwebaz http://about.me/rwebaz */
-
-import product.Product;
 
 public class SellerImplements extends Seller implements SellerInterface {
 	
 	// This class implements the SellerInterface
+	
+	// Declare the class or 'instance' variables of the 'SellerImplements' class
+	
+			// The Seller's name of each instance of the subject 'Seller' class
+				protected String sellerName;
+				
+			// The ID number of each Seller for each instance of the subject 'Seller' class
+				protected String sellerId;
+				
+			// The ID number of each Seller for each instance of the subject 'Seller' class
+				protected int sellerLimit;
 		
-	// The original 'instance' variables form the (old) 'SellerImpl' class
+	// Create a primary constructor for the 'SellerImplements' class
 		
-		protected static String name;
-		protected static Product product;
-		
-	// A re-naming of the original 'instance' variables form the (old) 'SellerImpl' class
-		
-		protected static String itemName;
-		protected static Product itemProduct;
-		
-	// Create a primary constructor
-		
-		public SellerImplements(String name, Product product) {
-			super(sellerName, sellerId, sellerLimit);
+		public SellerImplements(String s_name, String s_id, int s_limit) {
+			super(categoryName, itemProduct);
 			
 		/* Rename the instance variables of the 'SellerImplements' secondary constructor method...
 		 * To accommodate keyword 'this' and to...
 		 * Instantiate the variables as local within the primary constructor method 'SellerImplements' */
 			
-			itemName = name;
-			itemProduct = product;
-
-		}
-		
-	
-		
+			sellerName = s_name;
+			sellerId = s_id;
+			sellerLimit = s_limit;
 			
-	// A new method
-	
+		}
+			
+	// Other methods
+		
 	public void getSeller() {
 		System.out.println("The new Seller's name is " + this.getSellerName() +
 				"; Seller ID: " + this.getSellerId() +
@@ -50,23 +55,61 @@ public class SellerImplements extends Seller implements SellerInterface {
 		System.out.println("===============================================================================");
 	}
 	
+	// Declare the getter methods of the 'Seller' class
 	
-	// per contract w interface 'SellerInterface'
-	@Override
-	public String getSellerName() {
-		return this.getSellerName();
-		//more to come;
-	}
+		/* Per contract w interface 'SellerInterface'...
+		 * Give other methods the right to 'read from' or 'get' the variable 'sellerName'...
+		 * From the 'SellerImplements' class */
 	
-	// per contract w interface 'SellerInterface'
-	@Override
-	public String getSellerId() {
-		return this.getSellerId();
-	}
-	
-	// per contract w interface 'SellerInterface'
-	@Override
-	public int getSellerLimit() {
-		return this.getSellerLimit();
-	}
+		@Override
+		public String getSellerName() {
+			return sellerName;
+		}
+		
+		/* Per contract w interface 'SellerInterface'...
+		 * Give other methods the right to 'read from' or 'get' the variable 'sellerId'...
+		 * From the 'SellerImplements' class */
+		
+		@Override
+		public String getSellerId() {
+			return sellerId;
+		}
+		
+		/* Per contract w interface 'SellerInterface'...
+		 * Give other methods the right to 'read from' or 'get' the variable 'sellerLimit'...
+		 * From the 'SellerImplements' class */
+		
+		@Override
+		public int getSellerLimit() {
+			return sellerLimit;
+		}
+		
+	// Declare the setter methods of the 'Seller' class
+		
+		/* Per contract w interface 'SellerInterface'...
+		 * Give other methods the right to 'write to' or 'set' the variable 'sellerName'...
+		 * From the 'SellerImplements' class */
+				
+		@Override		
+		public void setSellerName(String sellerName) {
+			this.sellerName = sellerName;
+		}
+		
+		/* Per contract w interface 'SellerInterface'...
+		 * Give other methods the right to 'write to' or 'set' the variable 'sellerId'...
+		 * From the 'SellerImplements' class */
+				
+		@Override	
+		public void setSellerId(String sellerId) {
+			this.sellerId = sellerId;
+		}
+		
+		/* Per contract w interface 'SellerInterface'...
+		 * Give other methods the right to 'write to' or 'set' the variable 'sellerLimit'...
+		 * From the 'SellerImplements' class */
+		
+		@Override
+		public void setSellerLimit(int sellerLimit) {
+			this.sellerLimit = sellerLimit;
+		}
 }
