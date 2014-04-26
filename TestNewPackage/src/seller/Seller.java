@@ -16,8 +16,8 @@ import product.Product;
 public class Seller {
 	
 	/* Note: Variables declared outside of methods are deemed to be 'instance' or 'class' variables.
-	 * And, as such can be used within the class.
-	 * Thus, variables declared as 'class' variables are available class-wide. */
+	 * And, as such can be used within the class. Thus, variables declared as 'class' variables...
+	 * Are available class-wide. */
 	
 	// Note: Class variables can be identified as 'static' String(s), int(s), and double(s), not 'public'. */
 	
@@ -48,7 +48,7 @@ public class Seller {
 			
 	// Declare other methods
 
-			public void provideProduct() {
+			public void provideProduct(String itemName) {
 				// TODO Auto-generated method stub
 				
 			}
@@ -58,3 +58,59 @@ public class Seller {
 				
 			}
 }
+
+// the source code from the course download
+
+/**
+package seller;
+
+/**
+ * <pre>
+ * The Seller interface represents someone who wants to offer a Product for sale.
+ * Each Seller has a name and a Product that they want to sell.
+ * The Seller will do the following:
+ * </pre>
+ * <ol>
+ *   <li>Provide their name</li> 
+ *   <li>Provide the product they want to sell</li>
+ *   <li>Answer if they can provide a particular product</li>
+ *   <li>Sell their product</li>
+ * </ol> 
+
+ * @author Laureate Development Team
+ *
+
+public interface Seller
+	{
+	/**
+	 * Return the name of this Seller.
+	 * 
+	 * @return - the name of the Seller
+	 
+	public String getName();
+	
+	/**
+	 * Return the Product this Seller wants to sell.
+	 * 
+	 * @return - the Product this Seller offers for sale
+	 
+	public Product getProduct();
+	
+	/**
+	 * Does this Seller offer this product for sale?
+	 * 
+	 * @param productName - the name of the Product 
+	 * 
+	 * @return - true if the Seller offers this Product for sale
+	 *         - false if not
+	 
+	public boolean provideProduct(String productName);
+	
+	/**
+	 * Sell the Product this Seller has to offer.
+	 * 
+	 * @return - the Product that is being sold
+	 
+	public Product sellProduct();
+	}
+*/

@@ -81,3 +81,80 @@ public class Product {
 	// Other methods
 			
 }
+
+// From the course download
+
+/**
+*
+package seller;
+
+/**
+ * The Product class represents an item with a name and a price.
+ * 
+ * @author Laureate Development Team
+ *
+ 
+public class Product
+	{
+	/**
+	 * The name of the Product.
+	 
+	protected String itemName;
+	
+	/**
+	 * The price of the Product.
+	 
+	protected double itemPrice;
+	
+	/**
+	 * Create a new Product
+	 * 
+	 * @param name - the name of the Product
+	 * @param price - the price of the Product
+	 
+	public Product(String name, double price)
+		{
+		itemName = name;
+		itemPrice = price;
+		}
+	
+	/**
+	 * Get the name of the Product
+	 * 
+	 * @return - the name of the Product
+	 
+	public String getName()
+		{
+		return itemName;
+		}
+	
+	/**
+	 * Set the name of the Product
+	 * 
+	 * @param itemName - the name of the Product
+	 
+	public void setName(String itemName)
+		{
+		this.itemName = itemName;
+		}
+	
+	/**
+	 * Get the price of the Product
+	 * 
+	 * @return - the price of the Product
+	 
+	public double getPrice()
+		{
+		return itemPrice;
+		}
+	
+	/**
+	 * Set the price of the Product
+	 * 
+	 * @param itemPrice - the price of the Product
+	 
+	public void setPrice(double itemPrice)
+		{
+		this.itemPrice = itemPrice;
+		}
+	} */
