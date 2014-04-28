@@ -41,6 +41,8 @@ public interface BuyerInterface {
 		// @return The shopping list for this Buyer.
 		 
 		public List<String> getShoppingList();
-		List<String> getShoppingList1();
+		
+		
+		
 
 }

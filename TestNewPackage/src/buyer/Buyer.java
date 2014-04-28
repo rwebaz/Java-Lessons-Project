@@ -63,6 +63,10 @@ public class Buyer {
 		// The pay of each Buyer for each instance of the subject 'Buyer' class
 			protected String pay;
 			
+			
+		//
+			
+			
 	// Create the primary constructor for all future instances of the Buyer class
 			
 			public Buyer(String b_name, String b_type) {
@@ -72,8 +76,10 @@ public class Buyer {
 					
 			buyerName = b_name;
 			buyerType = b_type;
-						
-		}
+
+			}
+			
+			// Buyer buyer = Buyer(buyerName, buyerType);
 	
 	// Other methods
 		
@@ -83,7 +89,7 @@ public class Buyer {
 	// Declare the method or 'local' variables of the 'Buyer' class within their respective methods
 			
 			// Declare the getter methods of the 'Buyer' class
-			
+
 			// Give other methods the right to 'read from' or 'get' the variable 'buyerName' from the Buyer class
 			public String getBuyerName() {
 				return buyerName;

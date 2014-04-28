@@ -11,10 +11,9 @@ package test;
 
 import product.Product;
 import seller.Seller;
-
 import broker.Broker;
-
 import buyer.Buyer;
+import buyer.BuyerImplements;
 
 public class TestMain {
 
@@ -45,7 +44,7 @@ public class TestMain {
 					
 					// Register the Buyer ' Jim Shopper ' w the broker
 				
-					broker.addBuyer(jimshopper);
+					BuyerImplements.addBuyer(jimshopper);
 				
 				
 				// The products the ' Jim Shopper ' buyer wishes to purchase are, as follows:
@@ -57,7 +56,8 @@ public class TestMain {
 				
 					// Register the credit card buyer ' Simon Cardswell ' w the broker
 				
-					broker.addBuyer(creditcardbuyer);
+					BuyerImplements.addBuyer(creditcardbuyer);
+				
 				
 				// The products the credit card buyer ' Simon Cardswell ' wishes to purchase are, as follows:
 				
@@ -67,16 +67,19 @@ public class TestMain {
 						
 		// The Broker displays the Buyers and Sellers before making any sales
 				
-				broker.displayBuyers();
+				
+				BuyerImplements.displayBuyers();
+				
 				broker.displaySellers();
 				
 		// The Broker will now attempt to locate the items that the Buyers want to purchase
+
 				
-				broker.findItemsForBuyers();
+				// ((BuyerImplements) BuyerImplements.buyers).findItemsForBuyers();
 				
 		// The Broker displays the Buyers to see how much they purchased
 				
-				broker.displayBuyers();
+				BuyerImplements.displayBuyers();
 				
 	}
 

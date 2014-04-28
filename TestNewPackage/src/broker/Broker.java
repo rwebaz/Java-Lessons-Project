@@ -15,10 +15,6 @@ import seller.Seller;
 import java.util.ArrayList;
 import java.util.List;
 
-import product.Product;
-
-import buyer.Buyer;
-
 /**
  * The 'Broker' class is a new class, primarily to create instances of broker objects
  * ============================================================================================
@@ -43,97 +39,37 @@ public class Broker {
 	
 	// Other methods
 	
-	public void addSeller(Seller joebaker) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	//The list of registered Sellers.
+		//The list of registered Sellers.
 	 
-	private List<Seller> sellers = new ArrayList<Seller>();
+			private List<Seller> sellers = new ArrayList<Seller>();
 	
-	// The list of registered Buyers.
+			// Register a Seller with the Broker.
+			// @param seller - the Seller
 	 
-	private List<Buyer> buyers = new ArrayList<Buyer>();
+			public void addSeller(Seller seller) {
+				sellers.add(seller);
+			}
 	
-	/* Attempt to locate the Products that the Buyers are looking for.
-	 * When the Product is located, the Broker arranges for the Seller
-	 * to sell the Product, and for the Buyer to pay for it. */
+			// Register a Buyer with the Broker.
+			// @param buyer - the Buyer
+			 
+			// public void addBuyer(Buyer buyer) {
+			// buyers.add(buyer);
+			// }			
+	
+			// Display the list of registered Sellers
 	 
-	public void findItemsForBuyers()
-		{
-		// for (Buyer buyer : buyers)
-			{
-			// for (String productName : buyer.getShoppingList())
-				{
-				// String itemName = productName;
-				// Product theProduct = findItem(itemName);
-				// if (theProduct != null)
-					{
-					// buyer.payForItem(theProduct);
-					}
+			public void displaySellers() {
+				
+				System.out.println();
+				System.out.println("The sellers:");
+				
+				for (Seller seller : sellers) {
+					System.out.println(seller.toString());
 				}
+				
+				System.out.println(""); 
 			}
-		}
-
-	// Locate a Seller who can provide the desired Product.
-	// @param itemName - the name of the Product
-	// @return - the Product, if a Seller is located null, if no Seller provides this Product
-	 
-	public Product findItem(String itemName)
-		{
-		Product item = null;
-		
-		// for (Seller seller : sellers)
-			{
-			// if (seller.provideProduct(itemName))
-				{
-				// item = seller.sellProduct();				
-				// break;
-				}
-			}
-		
-		return item;
-		}
-	
-	// Register a Buyer with the Broker.
-	// @param buyer - the Buyer
-	 
-	public void addBuyer(Buyer buyer) {
-		buyers.add(buyer);
-	}
-	
-	// Display the list of registered Buyers
-	 
-	public void displayBuyers()
-		{
-		System.out.println();
-		System.out.println("The buyers:");
-		for (Buyer buyer : buyers)
-			{
-			System.out.println(buyer.toString());
-			}
-		System.out.println("");
-		}
-	
-	// Register a Seller with the Broker.
-	// @param seller - the Seller
-	 
-	public void addSeller1(Seller seller) {
-		sellers.add(seller);
-	}
-	
-	// Display the list of registered Sellers
-	 
-	public void displaySellers()
-		{
-		System.out.println();
-		System.out.println("The sellers:");
-		for (Seller seller : sellers)
-			{
-			System.out.println(seller.toString());
-			}
-		System.out.println(""); 
-		}
-
+			
+			
 }

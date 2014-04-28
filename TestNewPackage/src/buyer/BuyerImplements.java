@@ -20,6 +20,7 @@ import java.util.List;
 
 import product.Product;
 
+
 public class BuyerImplements extends Buyer implements BuyerInterface {
 	
 	// This class implements the BuyerInterface
@@ -56,10 +57,11 @@ public class BuyerImplements extends Buyer implements BuyerInterface {
 		}
 			
 	// Other methods
+			
+		public static void addBuyer(Buyer buyer) {
+			buyers.add(buyer);
+		}
 		
-		// The shopping list array that contains all the items this Buyer wants to purchase
-		 
-					private List<String> shoppingList = new ArrayList<String>();
 					
 			// The shopping cart that contains all the items this Buyer has purchased.
 					 
@@ -109,12 +111,7 @@ public class BuyerImplements extends Buyer implements BuyerInterface {
 					return str;
 					}
 
-			// Get the shopping list of items that the Buyer wants to purchase.
-			// @return the list of items in the shopping list
-
-				public List<String> getShoppingList() {
-					return shoppingList;
-				}
+			
 				
 			// Pay for the item that the Buyer is purchasing
 			// @param item - the Product that is being purchased
@@ -163,9 +160,81 @@ public class BuyerImplements extends Buyer implements BuyerInterface {
 					
 				}
 
-				@Override
-				public List<String> getShoppingList1() {
-					// TODO Auto-generated method stub
-					return null;
+				// The list of registered Buyers.
+				 
+				public static List<Buyer> buyers = new ArrayList<Buyer>();
+				
+				// Get the shopping list of items that the Buyer wants to purchase.
+				// @return the list of items in the shopping list
+					
+					@Override
+
+					public List<String> getShoppingList() {
+						return shoppingList;
+					}
+					
+					/* Attempt to locate the Products that the Buyers are looking for.
+					 * When the Product is located, the Broker arranges for the Seller
+					 * to sell the Product, and for the Buyer to pay for it. */
+					 
+					
+
+					// Locate a Seller who can provide the desired Product.
+					// @param itemName - the name of the Product
+					// @return - the Product, if a Seller is located null, if no Seller provides this Product
+					 
+					public Product findItem(String itemName)
+						{
+						Product item = null;
+						
+						// for (Seller seller : sellers)
+							{
+							// if (seller.provideProduct(itemName))
+								{
+								// item = seller.sellProduct();				
+								// break;
+								}
+							}
+						
+						return item;
+						}
+				
+				// The shopping list array that contains all the items this Buyer wants to purchase
+				 
+				private List<String> shoppingList = new ArrayList<String>();
+				
+				public void findItemsForBuyers() {
+					
+					for (Buyer buyer : buyers) {
+						
+						for (String productName : this.getShoppingList()) {
+							String itemName = productName;
+							Product theProduct = findItem(itemName);
+						// Nest If loop in 1st For loop	
+						if (theProduct != null) {
+							buyer.payForItem(theProduct);
+						}
+						// Close 2nd For loop
+						}
+					}
 				}
+				
+				// Display the list of registered Buyers
+				 
+				public static void displayBuyers()
+					{
+					System.out.println();
+					System.out.println("The buyers:");
+					for (Buyer buyer : buyers)
+						{
+						System.out.println(buyer.toString());
+						}
+					System.out.println("");
+					}
+
+				
+				
+				
+				
+				
 }
