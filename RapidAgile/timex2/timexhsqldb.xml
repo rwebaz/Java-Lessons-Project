@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+
+<project name="timexdb">
+  <property name="hjar" value="../lib/hsqldb.jar"/>
+  <property name="hclass" value="org.hsqldb.Server"/>
+  <property name="hfile" value="-database.0 data/timexdb"/>
+  <property name="halias" value="timex"/>
+  <property name="hport" value="9005"/>
+    
+  <target name="starthsql">
+    <java fork="true"
+          classname="${hclass}" classpath="${hjar}" 
+          args="${hfile} -dbname.0 ${halias} -port ${hport}"/>
+  </target>
+    
+  <target name="execddl">
+      <sql classpath="${hjar}"
+         driver="org.hsqldb.jdbcDriver" 
+         url="jdbc:hsqldb:hsql://localhost:${hport}/${halias}" 
+         userid="sa" password="" 
+         print="yes">
+-- SQL script for TimeX
+-- Step 1: Drop objects if they exist
+DROP TABLE Department IF EXISTS;
+DROP TABLE Employee IF EXISTS;
+DROP TABLE Timesheet IF EXISTS;
+DROP INDEX TimesheetIndex IF EXISTS;
+DROP INDEX DepartmentCodeIndex IF EXISTS;
+DROP INDEX EmployeeIdIndex IF EXISTS;
+
+-- Step 2: Create tables
+CREATE TABLE Department
+(
+   departmentCode CHAR(2) NOT NULL,
+   name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Employee
+(
+   employeeId INT NOT NULL,
+   name VARCHAR(100) NOT NULL,
+   email VARCHAR(255) NOT NULL,
+   employeeCode CHAR(1) NOT NULL,
+   password VARCHAR(10) NOT NULL,
+   managerEmployeeId INT NULL
+);
+
+CREATE TABLE Timesheet
+(
+   timesheetId IDENTITY NOT NULL,
+   employeeId INT NOT NULL,
+   statusCode CHAR(1) NOT NULL,
+   periodEndingDate DATE NOT NULL,
+   departmentCode CHAR(4) NOT NULL,
+   minutesMon INT NULL,
+   minutesTue INT NULL,
+   minutesWed INT NULL,
+   minutesThu INT NULL,
+   minutesFri INT NULL,
+   minutesSat INT NULL,
+   minutesSun INT NULL
+);
+
+-- Step 3: Create indexes
+CREATE UNIQUE INDEX TimesheetIndex ON Timesheet (employeeId, periodEndingDate);
+CREATE UNIQUE INDEX DepartmentCodeIndex ON Department (departmentCode);
+CREATE UNIQUE INDEX EmployeeIdIndex ON Employee (employeeId);
+
+-- Step 4: Insert some reference and test data
+INSERT INTO Department (departmentCode, name) 
+        VALUES ('AC', 'Accounting');
+INSERT INTO Department (departmentCode, name) 
+       VALUES ('CS', 'Customer Support');
+INSERT INTO Department (departmentCode, name) 
+       VALUES ('HR', 'Human Resources');
+INSERT INTO Department (departmentCode, name) 
+       VALUES ('IT', 'Information Technology');
+
+INSERT INTO Employee (employeeId, name, employeeCode, 
+                      password, email, managerEmployeeId)
+       VALUES (1, 'Mike Dover', 'H', 'rapidjava', 'mdover@acme.com', 3);
+INSERT INTO Employee (employeeId, name, employeeCode, 
+                      password, email, managerEmployeeId)
+       VALUES (2, 'Ajay Kumar', 'H', 'agility', 'akumar@acme.com', 3);
+INSERT INTO Employee (employeeId, name, employeeCode, 
+                      password, email, managerEmployeeId)
+       VALUES (3, 'Teresa Walker', 'M', 'spring', 'twalker@acme.com', 4);
+INSERT INTO Employee (employeeId, name, employeeCode, 
+                      password, email)
+       VALUES (4, 'Tom Brady', 'E', 'eclipse', 'tbrady@acme.com');
+
+INSERT INTO Timesheet(timesheetId, employeeId, statusCode, periodEndingDate,
+                      departmentCode, minutesMon, minutesTue, minutesWed,
+                      minutesThu, minutesFri, minutesSat, minutesSun)
+       VALUES (1, 2, 'P', '2006-08-19', 'IT', 480, 480, 360, 480, 480, 0, 0);
+INSERT INTO Timesheet(timesheetId, employeeId, statusCode, periodEndingDate,
+                      departmentCode, minutesMon, minutesTue, minutesWed,
+                      minutesThu, minutesFri, minutesSat, minutesSun)
+       VALUES (2, 1, 'A', '2006-08-19', 'HR', 0, 0, 480, 480, 480, 0, 0);
+
+-- Step 5: Verify tables and test data look ok
+SELECT * FROM Department;
+SELECT * FROM Employee;
+SELECT * FROM Timesheet;
+      </sql>
+  </target>
+  <target name="hsqldm">
+      <java fork="true" classpath="${hjar}" 
+            classname="org.hsqldb.util.DatabaseManagerSwing" />
+  </target>
+  <target name="sqltool">
+      <java fork="true" classpath="${hjar}" 
+            classname="org.hsqldb.util.SqlTool" args="localhost-sa"/>
+  </target>
+</project>

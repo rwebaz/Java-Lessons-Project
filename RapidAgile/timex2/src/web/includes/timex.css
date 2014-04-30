@@ -1,0 +1,9 @@
+h1 {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 24px; font-weight:800; color:#666666}
+p {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; }
+td {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; }
+th {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: bold; }
+thead { background-color: #D0D6EA;}
+.tableborder { border: thin; }
+.tdright { text-align: right; }
+.tdcenter {	text-align: center;}
+.even { background-color: #F1F8FE}

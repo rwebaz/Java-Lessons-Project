@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.visualpatterns.timex.model.Timesheet"
+		table="Timesheet">
+
+		<id name="timesheetId" column="timesheetId">
+			<generator class="identity" />
+		</id>
+
+		<property name="employeeId" />
+		<property name="statusCode" />
+		<property name="periodEndingDate" type="date" />
+		<property name="departmentCode" column="departmentCode" />
+		<property name="minutesMon" not-null="false" />
+		<property name="minutesTue" not-null="false" />
+		<property name="minutesWed" not-null="false" />
+		<property name="minutesThu" not-null="false" />
+		<property name="minutesFri" not-null="false" />
+		<property name="minutesSat" not-null="false" />
+		<property name="minutesSun" not-null="false" />
+
+		<many-to-one name="department" column="departmentCode"
+			class="com.visualpatterns.timex.model.Department" lazy="false"
+			not-found="ignore" cascade="none" insert="false" update="false" />
+
+		<sql-query
+			name="getTimesheetsByEmployeeIdAndPeriodEndingDate">
+			<return alias="timesheet"
+				class="com.visualpatterns.timex.model.Timesheet" />
+			from Timesheet where employeeId = :employeeId and
+			periodEndingDate = :periodEndingDate
+		</sql-query>
+	</class>
+</hibernate-mapping>

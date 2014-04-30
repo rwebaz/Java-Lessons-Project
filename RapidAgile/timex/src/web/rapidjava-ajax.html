@@ -1,0 +1,89 @@
+<script language="Javascript">
+<!-- demoAjax(): This is the main code, everything else is fluff -->
+    function demoAjax()
+    {
+        var ajaxRequest;
+        var self = this;
+    
+        // Non-IE browser
+        if (window.XMLHttpRequest)
+        {
+            self.ajaxRequest = new XMLHttpRequest();
+        }
+        // IE
+        else
+        if (window.ActiveXObject)
+        {
+            self.ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+    
+        self.ajaxRequest.open('POST', 'rapidjava-ajax.jsp', true);
+        self.ajaxRequest.setRequestHeader('Content-Type', 
+                 'application/x-www-form-urlencoded');
+    
+        var LOADED=4
+        self.ajaxRequest.onreadystatechange = function()
+        {
+            if (self.ajaxRequest.readyState == LOADED)
+            {
+                doUpdate(self.ajaxRequest.responseText);
+            }
+        }
+    
+        var form = document.forms['rapidjava'];
+        queryString = 'dateformat=' 
+                          + escape("HH:mm:ss");
+    
+        self.ajaxRequest.send(queryString);
+        self.setTimeout('demoAjax()', 15000)  
+    }    
+    
+    function doUpdate(message)
+    {
+        document.getElementById("showmessage").innerHTML = message;
+    }
+    
+    function viewSource()
+    {
+        window.location = "view-source:" + window.location.href 
+    }
+</script>
+
+
+<!-- NOTE: The remainder of this page is just fluff stuff -->
+<font face="tahoma,verdana,arial" size="2">
+<p>
+The current time on the server is:<b> 
+<div id="showmessage" style="color:blue;"></div></b>
+</p>
+<form>
+<textarea rows="10" cols="50">Try typing in this box while the time above changes every 15 seconds.</textarea>
+<p>
+Notice, only the time part changes  
+but the entire page is <em>not</em> reloaded.</p>  
+</p>
+</form>
+
+
+<hr noshade size=1>
+The following is the JSP behind this HTML page.
+</font>
+
+<pre>
+&lt;%
+String format = request.getParameter("dateformat");
+out.print(new java.text.SimpleDateFormat(format)
+                  .format(new java.util.Date()));
+%&gt;
+</pre>
+
+<font face="tahoma,verdana,arial" size="2">
+<a href="javascript:viewSource()">View</a> source code of 
+this HTML page.
+</font>
+<hr noshade size=1>
+
+
+<script>
+	demoAjax();
+</script>

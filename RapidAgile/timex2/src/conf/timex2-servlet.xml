@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+         http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="placeholderConfig"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location"
+			value="WEB-INF/classes/timex-servlet.properties" />
+	</bean>
+	
+	<!-- Hibernate -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+		<property name="url"
+			value="jdbc:hsqldb:hsql://localhost:9005/timex" />
+		<property name="username" value="sa" />
+		<property name="password" value="" />
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="useTransactionAwareDataSource" value="true" />
+		<property name="mappingResources">
+			<list>
+				<value>Department.hbm.xml</value>
+				<value>Employee.hbm.xml</value>
+				<value>Timesheet.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="connection.pool_size">1</prop>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.HSQLDialect
+				</prop>
+				<prop key="show_sql">true</prop>
+				<prop key="hibernate.generate_statistics">true</prop>
+				<prop key="hibernate.cglib.use_reflection_optimizer">
+					false
+				</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- URL mapping -->
+	<bean id="urlMap"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="urlMap">
+			<props>
+				<prop key="/signin.htm">signInController</prop>
+				<prop key="/signout.htm">signOutController</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="urlMapAuthenticate"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="interceptors">
+			<list>
+				<ref bean="httpRequestInterceptor" />
+			</list>
+		</property>
+		<property name="urlMap">
+			<props>
+				<prop key="/timesheetlist.htm">
+					timesheetListController
+				</prop>
+				<prop key="/enterhours.htm">enterHoursController</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="httpRequestInterceptor"
+		class="com.visualpatterns.timex.controller.HttpRequestInterceptor">
+		<property name="signInPage">
+			<value>signin.htm</value>
+		</property>
+		<property name="applicationSecurityManager">
+			<ref bean="applicationSecurityManager" />
+		</property>
+	</bean>
+
+	<!-- Controllers -->
+	<bean id="urlFilenameController"
+		class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
+	<bean name="signInController"
+		class="com.visualpatterns.timex.controller.SignInController">
+		<property name="sessionForm">
+			<value>true</value>
+		</property>
+		<property name="formView">
+			<value>/signin</value>
+		</property>
+		<property name="successView">
+			<value>redirect:timesheetlist.htm</value>
+		</property>
+		<property name="commandClass">
+			<value>com.visualpatterns.timex.model.Employee</value>
+		</property>
+		<property name="validator">
+			<ref bean="signinValidator" />
+		</property>
+		<property name="employeeManager">
+			<ref bean="employeeManagerProxy" />
+		</property>
+		<property name="applicationSecurityManager">
+			<ref bean="applicationSecurityManager" />
+		</property>
+		<property name="timexJmxBean">
+			<ref bean="timexJmxBean" />
+		</property>
+	</bean>
+	<bean name="signOutController"
+		class="com.visualpatterns.timex.controller.SignOutController">
+		<property name="applicationSecurityManager">
+			<ref bean="applicationSecurityManager" />
+		</property>
+		<property name="successView">
+			<value>redirect:signin.htm</value>
+		</property>
+	</bean>
+	<bean name="timesheetListController"
+		class="com.visualpatterns.timex.controller.TimesheetListController">
+		<property name="timesheetManager">
+			<ref bean="timesheetManagerProxy" />
+		</property>
+		<property name="applicationSecurityManager">
+			<ref bean="applicationSecurityManager" />
+		</property>
+		<property name="timexJmxBean">
+			<ref bean="timexJmxBean" />
+		</property>
+		<property name="successView">
+			<value>timesheetlist</value>
+		</property>
+	</bean>
+	<bean name="enterHoursController"
+		class="com.visualpatterns.timex.controller.EnterHoursController">
+		<property name="sessionForm">
+			<value>true</value>
+		</property>
+		<property name="commandClass">
+			<value>com.visualpatterns.timex.model.Timesheet</value>
+		</property>
+		<property name="formView">
+			<value>enterhours</value>
+		</property>
+		<property name="successView">
+			<value>redirect:timesheetlist.htm</value>
+		</property>
+		<property name="validator">
+			<ref bean="enterHoursValidator" />
+		</property>
+		<property name="timesheetManager">
+			<ref bean="timesheetManagerProxy" />
+		</property>
+		<property name="departmentManager">
+			<ref bean="departmentManagerProxy" />
+		</property>
+		<property name="applicationSecurityManager">
+			<ref bean="applicationSecurityManager" />
+		</property>
+	</bean>
+
+	<!-- Validators -->
+	<bean id="enterHoursValidator"
+		class="com.visualpatterns.timex.controller.EnterHoursValidator" />
+	<bean id="signinValidator"
+		class="com.visualpatterns.timex.controller.SignInValidator" />
+
+	<!-- Model beans -->
+	<bean id="employeeManager"
+		class="com.visualpatterns.timex.model.EmployeeManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="timesheetManager"
+		class="com.visualpatterns.timex.model.TimesheetManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="departmentManager"
+		class="com.visualpatterns.timex.model.DepartmentManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+		
+	<!-- Declarative transaction proxy beans -->
+	<bean id="departmentManagerProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="target" ref="departmentManager" />
+		<property name="proxyTargetClass" value="true"/>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="save*">PROPAGATION_REQUIRED</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED</prop>
+				<prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="employeeManagerProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="target" ref="employeeManager" />
+		<property name="proxyTargetClass" value="true"/>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="save*">PROPAGATION_REQUIRED</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED</prop>
+				<prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="timesheetManagerProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="target" ref="timesheetManager" />
+		<property name="proxyTargetClass" value="true"/>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="save*">PROPAGATION_REQUIRED</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED</prop>
+				<prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- Utility beans -->
+	<bean id="applicationSecurityManager"
+		class="com.visualpatterns.timex.util.ApplicationSecurityManager" />
+
+	<!-- View Resolver -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass">
+			<value>org.springframework.web.servlet.view.JstlView</value>
+		</property>
+		<property name="prefix">
+			<value>/WEB-INF/jsp/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+
+	<!-- Spring mail support -->
+	<bean id="mailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="acme.com" />
+		<property name="username" value="myuserid" />
+		<property name="password" value="mypassword" />
+	</bean>
+	<bean id="reminderEmailMessage"
+		class="org.springframework.mail.SimpleMailMessage">
+		<property name="from" value="me@me.com" />
+		<property name="subject" value="Reminder: Submit Timesheet" />
+		<property name="text"
+			value="Please don't forget to submit your timesheet.  Thank you!" />
+	</bean>
+	<bean id="reminderEmail"
+		class="com.visualpatterns.timex.job.ReminderEmail">
+		<property name="employeeManager">
+			<ref bean="employeeManagerProxy" />
+		</property>
+		<property name="mailSender">
+			<ref bean="mailSender" />
+		</property>
+		<property name="message">
+			<ref bean="reminderEmailMessage" />
+		</property>
+	</bean>
+
+	<!-- Spring job scheduling -->
+	<bean id="reminderEmailJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="reminderEmail" />
+		<property name="targetMethod" value="sendMail" />
+	</bean>
+	<bean id="reminderEmailJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="reminderEmailJobDetail" />
+		<property name="cronExpression" value="0 0 14 ? * 6" />
+	</bean>
+	<bean
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="reminderEmailJobTrigger" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- Spring JMX support -->
+	<bean id="timexJmxBean"
+		class="com.visualpatterns.timex.util.TimexJmxBean" />
+	<bean id="exporter"
+		class="org.springframework.jmx.export.MBeanExporter">
+		<property name="registrationBehaviorName"
+			value="REGISTRATION_IGNORE_EXISTING" />
+		<property name="beans">
+			<map>
+				<entry key="Time Expression:name=timex-stats"
+					value-ref="timexJmxBean" />
+			</map>
+		</property>
+	</bean>
+
+	<!-- Resource Bundle -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>messages</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Web Based Exception Handling -->
+    <bean id="exceptionResolver"
+    class=
+     "org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop
+                    key="org.hibernate.exception.JDBCConnectionException">
+                    dberror
+                </prop>
+            </props>
+        </property>
+    </bean>
+</beans>

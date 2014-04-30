@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+         http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- URL mapping -->
+	<bean id="urlMap"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="urlMap">
+			<props>
+				<prop key="/timesheetsave1.htm">
+					timesheetSaveController1
+				</prop>
+				<prop key="/timesheetsave2.htm">
+					timesheetSaveController2
+				</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- Controllers -->
+	<bean name="timesheetSaveController1"
+		class="controller.TimesheetSaveController">
+		<property name="timesheetManager">
+			<ref bean="timesheetManagerProxy1" />
+		</property>
+	</bean>
+	<bean name="timesheetSaveController2"
+		class="controller.TimesheetSaveController">
+		<property name="timesheetManager">
+			<ref bean="timesheetManagerProxy2" />
+		</property>
+	</bean>
+
+	<!-- Model classes -->
+	<bean id="timesheetManager1" class="model.TimesheetManagerImpl1">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="timesheetManager2" class="model.TimesheetManagerImpl2">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- Declarative transaction management -->
+	<bean id="timesheetManagerProxy1"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="target" ref="timesheetManager1" />
+		<property name="transactionAttributes">
+			<props>
+				<prop key="save*">PROPAGATION_REQUIRED</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED</prop>
+				<prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="timesheetManagerProxy2"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="target" ref="timesheetManager2" />
+		<property name="transactionAttributes">
+			<props>
+				<prop key="save*">PROPAGATION_REQUIRED</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED</prop>
+				<prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- View Resolver -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass">
+			<value>org.springframework.web.servlet.view.JstlView</value>
+		</property>
+		<property name="prefix">
+			<value>/WEB-INF/jsp/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+
+	<!-- Database Resources and Transaction Management -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+		<property name="url"
+			value="jdbc:hsqldb:hsql://localhost:9005/timex" />
+		<property name="username" value="sa" />
+		<property name="password" value="" />
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="useTransactionAwareDataSource" value="true" />
+		<property name="mappingResources">
+			<list>
+				<value>Timesheet.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="connection.pool_size">1</prop>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.HSQLDialect
+				</prop>
+				<prop key="show_sql">true</prop>
+				<prop key="hibernate.generate_statistics">true</prop>
+				<prop key="hibernate.cglib.use_reflection_optimizer">
+					false
+				</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="exceptionResolver"
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="org.springframework.dao.DataIntegrityViolationException">
+					dberror
+				</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

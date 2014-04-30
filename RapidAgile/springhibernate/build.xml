@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+
+<project name="springhibernate" basedir="." default="build">
+    <property name="deploy.dir" value="/apache-tomcat-5.5.15/webapps" />
+
+    <property name="lib.dir" value="../lib" />
+    <property name="dist.dir" value="dist" />
+    <property name="src.dir" value="src" />
+    <property name="build.dir" value="build" />
+    <property name="war.dir" value="${build.dir}/springhibernate" />
+    <property name="webinf.dir" value="${war.dir}/WEB-INF" />
+    <property name="class.dir" value="${war.dir}/WEB-INF/classes" />
+    <property name="warlib.dir" value="${war.dir}/WEB-INF/lib" />
+    <property name="war.file" value="${dist.dir}/${ant.project.name}.war" />
+    <property name="jsp.dir" value="${war.dir}/WEB-INF/jsp" />
+    <property name="views.dir" 
+              value="${src.dir}/view" />
+
+    <path id="master-classpath" description="Master CLASSPATH for this script">
+        <fileset dir="${lib.dir}">
+            <include name="*.jar" />
+        </fileset>
+        <pathelement location="${war.dir}/WEB-INF/classes/" />
+    </path>
+
+    <target name="init" description="Setup for build script">
+        <mkdir dir="${lib.dir}" />
+        <mkdir dir="${dist.dir}" />
+        <mkdir dir="${class.dir}" />
+        <mkdir dir="${warlib.dir}" />
+        <mkdir dir="${jsp.dir}" />
+    </target>
+
+    <target name="build" depends="init" 
+    	    description="Compiles .java files to WAR directory">
+        <javac srcdir="${src.dir}" destdir="${class.dir}" debug="true" 
+               failonerror="true" classpathref="master-classpath"/>
+        <copy file="conf/springhibernate-servlet.xml" todir="${webinf.dir}" />
+        <copy todir="${jsp.dir}">
+            <fileset dir="${views.dir}" />
+        </copy>
+        <copy todir="${class.dir}">
+            <fileset dir="${src.dir}/model">
+                <include name="**/*.xml" />
+            </fileset>
+        </copy>
+        <copy todir="${warlib.dir}">
+            <fileset dir="${lib.dir}">
+                <exclude name="*servlet*.jar" />
+                <exclude name="*jetty*.jar" />
+                <exclude name="*junit*.jar" />
+                <exclude name="*spring-mock*.jar" />
+            </fileset>
+        </copy>
+    </target>
+	
+    <target name="dist" depends="build" description="Assembles WAR file">
+        <mkdir dir="${dist.dir}" />
+        <war destfile="${war.file}" webxml="conf/web.xml">
+            <fileset dir="${war.dir}">
+                <include name="**/*.*" />
+            </fileset>
+        </war>
+    </target>
+	
+    <target name="deploy" depends="dist" 
+            description="Deploys WAR file to deploy.dir">
+        <copy file="${war.file}" todir="${deploy.dir}" />
+    </target>
+</project>

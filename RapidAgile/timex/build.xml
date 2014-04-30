@@ -1,0 +1,207 @@
+<?xml version="1.0"?>
+
+<!-- 
+Build file for Time Expression application from 
+Rapid Java Development book.
+-->
+<project name="timex" basedir="." default="build">
+    <property name="appname" value="${ant.project.name}" />
+    <property name="env" value="local" />
+    
+    <!-- load properties file -->
+    <property file="local.properties" />
+    <property name="lib.dir" value="../lib" />
+    <property name="dist.dir" value="dist" />
+    <property name="src.dir" value="src" />
+    <property name="tmp.dir" value="tmp" />
+    <property name="img.dir" value="images" />
+    <property name="data.dir" value="data" />
+    <property name="build.dir" value="build" />
+    <property name="conf.dir" value="${src.dir}/conf" />
+    <property name="web.dir" value="${src.dir}/web" />
+    <property name="war.dir" value="${build.dir}/${appname}" />
+    <property name="war.file" value="${dist.dir}/${appname}.war" />
+    <property name="webinf.dir" value="${war.dir}/WEB-INF" />
+    <property name="class.dir" value="${war.dir}/WEB-INF/classes" />
+    <property name="warlib.dir" value="${war.dir}/WEB-INF/lib" />
+    <property name="jsp.dir" value="${war.dir}/WEB-INF/jsp" />
+    <property name="views.dir" 
+              value="${src.dir}/java/com/visualpatterns/timex/view" />
+    <property name="model.dir" 
+              value="${src.dir}/java/com/visualpatterns/timex/model" />
+    <property name="controller.dir" 
+              value="${src.dir}/java/com/visualpatterns/timex/controller" />
+    <property name="util.dir" 
+              value="${src.dir}/java/com/visualpatterns/timex/util" />
+    <property name="envprops" value="${env}.properties" />
+    <property name="timexprops" value="${class.dir}/timex-servlet.properties"/>
+
+    <path id="master-classpath" description="Master CLASSPATH for this script">
+        <fileset dir="${lib.dir}">
+            <include name="*.jar" />
+        </fileset>
+        <pathelement location="build/timex/WEB-INF/classes/" />
+    </path>
+
+    <target name="init" description="Setup for build script">
+        <mkdir dir="${conf.dir}" />
+        <mkdir dir="${web.dir}" />
+        <mkdir dir="${data.dir}" />
+        <mkdir dir="${class.dir}" />
+        <mkdir dir="${lib.dir}" />
+        <mkdir dir="${warlib.dir}" />
+        <mkdir dir="${jsp.dir}" />
+        <mkdir dir="${views.dir}" />
+        <mkdir dir="${model.dir}" />
+        <mkdir dir="${controller.dir}" />
+        <mkdir dir="${util.dir}" />
+    </target>
+
+    <target name="updateweb" depends="init" 
+            description="Copies web related files to WAR directory">
+        <copy todir="${war.dir}">
+            <fileset dir="${web.dir}">
+                <include name="**/*" />
+            </fileset>
+        </copy>
+        <copy todir="${jsp.dir}">
+            <fileset dir="${views.dir}" />
+        </copy>
+    </target>
+
+    <target name="updatelib" depends="init" 
+            description="Copies JAR files to WAR directory">
+        <copy todir="${warlib.dir}">
+            <fileset dir="${lib.dir}">
+                <exclude name="*servlet*.jar" />
+                <exclude name="*jetty*.jar" />
+                <exclude name="*junit*.jar" />
+                <exclude name="*spring-mock*.jar" />
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="deleteconfig" depends="init" 
+            description="Deletes config files from WAR directory">
+        <delete failonerror="false">
+            <fileset dir="${war.dir}">
+                <include name="**/*.properties" />
+                <include name="**/*.xml" />
+            </fileset>
+        </delete>
+    </target>
+
+    <target name="updateconfig" depends="init"
+            description="Copies configuration files to WAR directory">
+        <echo level="info">Environment config file: ${envprops}</echo>
+        <copy file="${envprops}" tofile="${timexprops}" />
+        <copy todir="${class.dir}">
+            <fileset dir="${src.dir}/java/com/visualpatterns/timex/model/">
+                <include name="**/*.xml" />
+            </fileset>
+            <fileset dir="${src.dir}/conf">
+                <include name="**/*.properties" />
+                <exclude name="dev.properties" />
+                <exclude name="test.properties" />
+                <exclude name="acpt.properties" />
+                <exclude name="prod.properties" />
+            </fileset>
+        </copy>
+        <copy todir="${webinf.dir}" preservelastmodified="true">
+            <fileset dir="${src.dir}/conf">
+                <include name="**/*.xml" />
+                <include name="**/*.tld" />
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="compile" depends="init" 
+    	    description="Compiles .java files to WAR directory">
+        <javac srcdir="${src.dir}" destdir="${class.dir}" debug="true" 
+               failonerror="true" classpathref="master-classpath" 
+        	   depend="true"/>
+    </target>
+
+    <target name="build" depends="compile,updateweb,updateconfig,updatelib" />
+
+    <target name="rebuild" 
+            depends="clean,compile,updateweb,updateconfig,updatelib" />
+
+    <target name="dist" depends="rebuild" description="Assembles WAR file">
+        <copy todir="${webinf.dir}/${src.dir}">
+            <fileset dir="${src.dir}">
+                <include name="**/*.java" />
+            </fileset>
+        </copy>
+        <copy todir="${webinf.dir}/${data.dir}">
+            <fileset dir="${data.dir}">
+                <include name="**/*" />
+            </fileset>
+        </copy>
+        <mkdir dir="${dist.dir}" />
+        <war destfile="${war.file}" webxml="${src.dir}/conf/web.xml">
+            <fileset dir="${war.dir}">
+                <include name="**/*.*" />
+                <exclude name="**/web.xml" />
+                <exclude name="**/test/*.class" />
+                <exclude name="**/*mock*.jar" />
+            </fileset>
+        </war>
+        <delete dir="${webinf.dir}/${src.dir}" failonerror="false" />
+    </target>
+
+    <target name="deploy" depends="dist" 
+            description="Deploys WAR file to deploy.dir">
+        <delete failonerror="true" dir="${deploy.dir}/${appname}" />
+        <copy file="${war.file}" todir="${deploy.dir}" />
+    </target>
+
+    <target name="clean" description="Deletes files from WAR directory">
+        <delete failonerror="false">
+            <fileset dir="${war.dir}">
+                <include name="**/*.*" />
+            </fileset>
+        </delete>
+        <delete failonerror="false">
+            <fileset dir="${dist.dir}">
+                <include name="**/*" />
+            </fileset>
+        </delete>
+    </target>
+	
+    <target name="junitswing">
+        <java fork="true" classpathref="master-classpath" 
+              classname="junit.swingui.TestRunner" />
+    </target>
+
+    <target name="test" depends="compile">
+        <junit printsummary="true" showoutput="yes" filtertrace="false">
+            <classpath refid="master-classpath" />
+            <batchtest fork="yes">
+                <formatter type="plain" />
+                <fileset dir="${class.dir}">
+                    <include name="**/*Test.class" />
+                    <exclude name="**/HibernateTest.class" />
+                    <exclude name="**/SpringTest.class" />
+                    <exclude name="**/AllTests.class" />
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
+	<!-- Added in Chapter 5 -->
+    <target name="hibernatetest" depends="build">
+        <java fork="true" classpathref="master-classpath" 
+              classname="com.visualpatterns.timex.test.HibernateTest" />
+    </target>
+
+	<!-- Added in Chapter 7 -->
+    <target name="springtest" depends="build">
+        <java fork="true" classpathref="master-classpath" 
+              classname="com.visualpatterns.timex.test.SpringTest" />
+    </target>
+    <target name="timesheetlistcontrollertest">
+        <java fork="true" classpathref="master-classpath" 
+        classname="com.visualpatterns.timex.test.TimesheetListControllerTest"/>
+    </target>
+</project>

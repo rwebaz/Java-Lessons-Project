@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+
+<project name="antextras">
+  <target name="demoftp">
+	  <ftp server="mirrors.kernel.org"
+	       action="get"       
+	       remotedir="/gnu/chess"
+	       userid="anonymous"
+	       password="guest@guest.com"
+	       verbose="yes"
+	       binary="yes">
+	    <fileset file="README.gnuchess"/>
+	  </ftp>
+  </target>
+	
+  <target name="democvs">
+	  <cvs cvsRoot=
+	  	":pserver:anonymous@cvs.sourceforge.net:/cvsroot/springframework"
+		   package="spring"
+		   dest="/temp"
+	  />
+   </target>
+
+  <target name="demosleep">
+  	<echo message="BEGIN"/>
+  	<sleep seconds="2"/>
+  	<echo message="END"/>
+  </target>
+
+  <target name="demomail">
+  	<mail tolist="friend@somehost.com" 
+  		  subject="Hello!" 
+  	      from="me@myhost.com"
+     	  mailhost="myhost.com"
+  	      user="myuserid"
+  	      password="mypassword"/>
+  </target>
+
+  <target name="demosql">
+  	<sql driver="org.hsqldb.jdbcDriver" 
+  		 url="jdbc:hsqldb:hsql://localhost:9005/timex" 
+  		 userid="sa" password="" 
+  		 print="yes">
+  		select * from Timesheet;
+  	</sql>
+  </target>
+
+  <target name="demoexec">
+  	<exec command="date"/>
+  </target>
+
+  <target name="demoget">
+	<get src="http://visualpatterns.com/comics/funny.gif" 
+	    dest="funny.gif" 
+	    verbose="true"/>
+   </target>
+</project>
