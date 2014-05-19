@@ -41,7 +41,7 @@ public class Buffer {
 					// TODO Auto-generated method stub
 				} */
 				
-		// Declare the getter methods of the 'Buffer' class
+		// Declare the Accessor getter methods of the 'Buffer' class
 				
 			// Give other methods the right to 'read from' or 'get' the variable 'x' from the Buffer class
 				public String getBufferX() {
@@ -58,7 +58,7 @@ public class Buffer {
 					return z;
 				}
 				
-		// Declare the setter methods of the 'Buffer' class
+		// Declare the Accessor setter methods of the 'Buffer' class
 				
 			// Give other methods the right to 'write to' or 'set' the variable 'x' from the Buffer class
 				public void setBufferX(String x) {
