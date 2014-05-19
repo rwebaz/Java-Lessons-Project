@@ -41,7 +41,8 @@ public class Buffer {
 					// TODO Auto-generated method stub
 				} */
 				
-		// Declare the Accessor getter methods of the 'Buffer' class
+		/* Declare the Accessor getter methods of the Java 'Buffer' class w the prefix 'get'.
+			Note: Because this is a simple 'read' in objective-C, the prefix 'get' is ommitted there. */
 				
 			// Give other methods the right to 'read from' or 'get' the variable 'x' from the Buffer class
 				public String getBufferX() {
@@ -58,7 +59,8 @@ public class Buffer {
 					return z;
 				}
 				
-		// Declare the Accessor setter methods of the 'Buffer' class
+		/* Declare the Accessor setter methods of the Java 'Buffer' class w the prefix 'set'.
+			Note: Because this is a complex 'write' in objective-C, the prefix 'set' is used there, as well. */
 				
 			// Give other methods the right to 'write to' or 'set' the variable 'x' from the Buffer class
 				public void setBufferX(String x) {
