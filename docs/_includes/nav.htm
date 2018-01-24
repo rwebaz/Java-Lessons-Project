@@ -1,22 +1,3 @@
-{% comment %}
-<!--
-<hgroup class='text-left'>
-	<h4><span><b>Note</b>.</span>
-    Navigation via (.htm) Include nav</h4>
-</hgroup>
-	<hr class='green-groove' />
-
-
-<p>
-  <span>The navigation section is split between an auto-generated list and a manually built list.</span>
-</p>
-
-<hgroup class='text-left'>
-	<h5>The Auto-built List</h5>
-</hgroup>
-	<hr class='green-groove' /> -->
-{% endcomment %}
-
 <nav class="nav-primary" role="navigation">
   <ul>
     {% assign navigation_pages = site.html_pages | sort: 'navigation_weight' %}
@@ -33,18 +14,3 @@
     {% endfor %}
   </ul>
 </nav>
-
-{% comment %}
-<!--
-<hgroup class='text-left'>
-	<h5>The Manually-built List</h5>
-</hgroup>
-	<hr class='green-groove' />
-
-<nav class="nav-secondary" role="navigation">
-  <ul>
-    <li>{{ site.github.url }}{% link pages/Let-Functions-Become-Arrows.md %}</li>
-  </ul>
-  <hr class='green-groove' />
-</nav> -->
-{% endcomment %}
