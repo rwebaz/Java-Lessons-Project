@@ -14,8 +14,8 @@ theme: "jekyll-theme-cayman"
 # repository: https://www.github.com/rwebaz/Java-Lessons-Project
 #
 title: "Java Lessons Project"
-tagline: "A GitHub repo of Lessons and Articles that emphasize the Java development engines"
-description: "A GitHub repo of Lessons and Articles that emphasize both the Java development engines."
+tagline: "A GitHub repo of Lessons and Articles that emphasize the Java development engine"
+description: "A GitHub repo of Lessons and Articles that emphasize the Java development engine."
 twitter:
     username: "mminail"
 author:
