@@ -1,0 +1,132 @@
+---
+
+---
+/* Style template scss Dtd 12-31-17 */
+/* @import 'jekyll-theme-cayman'; */
+@import "{{ site.theme }}";
+
+/* Page Header From theme */
+.page-header {
+  color: $header-heading-color;
+  text-align: center;
+  background-color: $header-bg-color;
+  background-image: linear-gradient(120deg, $header-bg-color-secondary, $header-bg-color);
+  
+  @include large {
+    padding: 5rem 6rem;
+  }
+
+  @include medium {
+    padding: 3rem 4rem;
+  }
+
+  @include small {
+    padding: 2rem 1rem;
+  }
+}
+/* End Page Header From theme */
+
+/* Set the Rule for a Custom hard return tag */
+.green-groove {
+    border: 3px groove green;
+}
+
+/* Set the color of the anchor links */
+a {
+    text-decoration: none;
+}
+
+a[href^="https:"] {
+    font-family: 'eurostyle';
+    font-size: 1.25em;
+    color: dodgerblue;
+    letter-spacing: 1px;
+}
+
+a[href^="http:"] {
+    color: rgb(207,103,75); /* Indian Red */ 
+}
+
+li.active a {
+	color: #DC143C; /* Crimson Red */
+    
+}
+
+.red {
+    color: #DC143C; /* Crimson Red */
+}
+
+.btn {
+    /* color: #004B23; Forest Green */
+    color: dodgerblue;
+}
+/* End Setting the color of the anchor links */
+
+/* Imgage Zoom-out From thumb */
+.icon-thumb {
+    width: 25px;
+    height: auto;
+}
+
+/* The Adjacent Sibling */
+.icon-zoom {
+    position: absolute;
+    width: 0px;
+    -webkit-transition: width 0.3s linear 0s;
+    transition: width 0.3s linear 0s;
+    z-index: 5;
+}
+
+/* Where the "plus" sign represents the adjacent sibling selector in Css3 */
+.icon-thumb:hover + .icon-zoom {
+    width: 100px;
+}
+/* End Imgage Zoom-out From thumb */
+
+/* Set the collapsable Responsive Image */
+img {
+    /* min-width: 340px; */
+    /* max-width: 100%; */
+    height: auto;
+    border: 1px solid transparent;
+    /* border: 1px solid red; */
+}
+
+.img-responsive {
+    width: calc(100% - 0px);
+    max-width: 100%;
+    }
+/* End the collapsable Responsive Image */
+
+/* Set the Primary Nav*/
+nav.nav-primary ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	/* float: right; */
+}
+
+nav.nav-primary li,
+nav.nav-primary a {
+	display: inline-block;
+}
+
+nav.nav-primary li a {
+    text-align: center;
+    background-color:rgba(255, 255, 255, 0.7);
+    padding: 1%;
+    border-radius: 6px;
+}
+/* End Setting the Primary Nav*/
+
+/* Set the Table Row */
+.center {
+    text-align: center;
+}
+/* End Setting the Table Row */
+
+/* Set the Table Border */
+.groove-table {
+    border: 5px groove green;
+}
+/* End Setting the Table Border */

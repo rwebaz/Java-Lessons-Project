@@ -1,1 +1,84 @@
-theme: jekyll-theme-cayman
+# Site settings
+#
+# Date of this Update to Config-template file ver 12-31-2017
+#
+# github: [metadata]
+#
+# Uncomment theme for docs folder
+theme: "jekyll-theme-cayman"
+#
+# There is one main repository as of 12-31-17
+# repository: https://www.github.com/MMINAIL/mminail.github.io
+#
+# There are approx sixty auxillary repositories as of 12-31-17
+# repository: https://www.github.com/rwebaz/Java-Lessons-Project
+#
+title: "Java Lessons Project"
+tagline: "A GitHub repo of Lessons and Articles that emphasize the Java development engines"
+description: "A GitHub repo of Lessons and Articles that emphasize both the Java development engines."
+twitter:
+    username: "mminail"
+author:
+    name: "Robert Weber, Director"
+    email: "mminail@icloud.com"
+    github_username: "rwebaz"
+    twitter_username: "rwebaz"
+# The 'baseurl' is the subpath of your designated project, e.g. /Liquid-Lessons-Project or /blog or simply "/"
+baseurl: "/Java-Lessons-Project"
+# The 'url' is the parental web address of your designated project, e.g. /https://mminail.github.io
+url: "https://rwebaz.github.io"
+exclude: ['README.md']
+markdown: "kramdown"
+highlighter: "rouge"
+kramdown:
+    input: "GFM"
+    hard_wrap: "false"
+    syntax_highlighter: "rouge"
+    math_engine: "mathjax"
+timezone: "America/Phoenix"
+google_analytics: [UA-44765001-00]
+defaults:
+  - scope:
+      path: "assets/img"
+    values:
+      image: "true"
+defaults:
+  - scope:
+      path: "assets/img/png"
+    values:
+      image: "true"
+defaults:
+  - scope:
+      path: "assets/img/svg"
+    values:
+      image: "true"
+defaults:
+  - scope:
+      path: "" 
+      type: "pages"
+    values:
+      layout: "default"
+      author: "Robert Weber, Director"
+defaults:
+  - scope:
+      path: "pages"
+      type: "pages"
+    values:
+      layout: "default" 
+      author: "Robert Weber, Director"
+collections:
+  collection_CFFP:
+    output: "true"
+defaults:
+  - scope:
+      path: ""
+      type: "collection_LLP"
+    values:
+      layout: "page"
+plugins_dir:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+exclude:
+  - Gemfile
+  - Gemfile.lock
