@@ -36,7 +36,7 @@ kramdown:
     syntax_highlighter: "rouge"
     math_engine: "mathjax"
 timezone: "America/Phoenix"
-google_analytics: [UA-44765001-00]
+google_analytics: [UA-57898424-2]
 defaults:
   - scope:
       path: "assets/img"
