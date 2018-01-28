@@ -1,8 +1,6 @@
 # Site settings
 #
-# Date of this Update to Config-template file ver 12-31-2017
-#
-# github: [metadata]
+# Date of this Update to Config-template file ver 01-01-2018
 #
 # Uncomment theme for docs folder
 theme: "jekyll-theme-cayman"
@@ -15,7 +13,7 @@ theme: "jekyll-theme-cayman"
 #
 title: "Java Lessons Project"
 tagline: "A GitHub repo of Lessons and Articles that emphasize the Java development engine"
-description: "A GitHub repo of Lessons and Articles that emphasize the Java development engine."
+description: "The Java Lessons Project, or JLP is a GitHub repo of Lessons and Articles emphasizing the Java development engine."
 twitter:
     username: "mminail"
 author:
@@ -23,7 +21,7 @@ author:
     email: "mminail@icloud.com"
     github_username: "rwebaz"
     twitter_username: "rwebaz"
-# The 'baseurl' is the subpath of your designated project, e.g. /Liquid-Lessons-Project or /blog or simply "/"
+# The 'baseurl' is the subpath of your designated project, e.g. /Blank-Lessons-Project or /blog or simply "/"
 baseurl: "/Java-Lessons-Project"
 # The 'url' is the parental web address of your designated project, e.g. /https://mminail.github.io
 url: "https://rwebaz.github.io"
@@ -82,3 +80,4 @@ plugins_dir:
 exclude:
   - Gemfile
   - Gemfile.lock
+  - Gemfile.old
