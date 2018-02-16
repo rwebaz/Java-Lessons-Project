@@ -1,7 +1,7 @@
 ---
 
 ---
-/* Style template scss Dtd 12-31-17 */
+/* Style template scss Dtd 02-04-18 pm */
 /* @import 'jekyll-theme-cayman'; */
 @import "{{ site.theme }}";
 
@@ -56,6 +56,14 @@ li.active a {
     color: #DC143C; /* Crimson Red */
 }
 
+.indian-red {
+  color: rgb(207,103,75); /* Indian Red */
+}
+
+.light-dodger-blue {
+  color: #337ab7; /* Light Dodger Blue */
+}
+
 .btn {
     /* color: #004B23; Forest Green */
     color: dodgerblue;
@@ -83,6 +91,20 @@ li.active a {
 }
 /* End Imgage Zoom-out From thumb */
 
+/* ------------------------------------------
+    Begin Image Zoom-out From Alternative svg
+------------------------------------------ */
+
+.img-logo-badge-icon {
+  width: calc(5% - 0px);
+  height: auto;
+}
+
+/* Where the "plus" sign represents the adjacent sibling selector in Css3 */
+.img-logo-badge-icon:hover + .icon-zoom {
+  width: calc(10% - 0px);
+}
+
 /* Set the collapsable Responsive Image */
 img {
     /* min-width: 340px; */
@@ -95,7 +117,11 @@ img {
 .img-responsive {
     width: calc(100% - 0px);
     max-width: 100%;
-    }
+}
+
+.img-rounded {
+  border-radius:6px;
+}
 /* End the collapsable Responsive Image */
 
 /* Set the Primary Nav*/
@@ -114,10 +140,10 @@ nav.nav-primary a {
 nav.nav-primary li a {
     text-align: center;
     background-color:rgba(255, 255, 255, 0.7);
-    padding: 1%;
+	padding: 1%;
     border-radius: 6px;
 }
-/* End Setting the Primary Nav*/
+/* End Setting the Primary Nav */
 
 /* Set the Table Row */
 .center {
@@ -130,3 +156,4 @@ nav.nav-primary li a {
     border: 5px groove green;
 }
 /* End Setting the Table Border */
+   

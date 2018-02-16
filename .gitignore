@@ -1,6 +1,6 @@
-#
-# Template Dtd 01-23-18
-#
+# 
+# Template Dtd 01-31-18
+# 
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 #
 # User-specific files
@@ -150,6 +150,7 @@ nCrunchTemp_*
 #
 # MightyMoose
 *.mm.*
+#
 AutoTest.Net/
 #
 # Web workbench (sass)
@@ -403,15 +404,6 @@ _TeamCity*
 # DotCover is a Code Coverage Tool
 *.dotCover
 #
-# NCrunch
-_NCrunch_*
-.*crunch*.local.xml
-nCrunchTemp_*
-#
-# MightyMoose
-*.mm.*
-AutoTest.Net/
-#
 # Web workbench (sass)
 .sass-cache/
 #
@@ -605,7 +597,7 @@ yarn.lock
 #
 # gem
 # Commit all gem-lock
-# bundle install
+# bundle install / update
 gemfile
 gemfile.lock
 #
@@ -656,4 +648,4 @@ $
 *.dotCover
 #
 .metadata
-#
+# 
