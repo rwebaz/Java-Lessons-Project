@@ -1,0 +1,11 @@
+{
+  "set-A":[
+    { "lastName" : "Allen", "vote" : true },
+    { "lastName" : "Alston", "vote" : false }
+  ],
+
+  "set-B":[
+    { "lastName" : "Andrade", "vote" : null },
+    { "lastName" : "Barton", "vote" : true }
+  ]
+}

@@ -1,7 +1,7 @@
 ---
 
 ---
-/* Style template scss Dtd 02-04-18 pm */
+/* Style template scss Dtd 02-11-18 */
 /* @import 'jekyll-theme-cayman'; */
 @import "{{ site.theme }}";
 
@@ -29,6 +29,10 @@
 /* Set the Rule for a Custom hard return tag */
 .green-groove {
     border: 3px groove green;
+}
+
+.red-groove {
+  border: 3px groove red;
 }
 
 /* Set the color of the anchor links */
@@ -156,4 +160,11 @@ nav.nav-primary li a {
     border: 5px groove green;
 }
 /* End Setting the Table Border */
+
+/* Set the horizontal tabs of the TOC */
+.horizontal {
+  float: left;
+  list-style: none;
+  margin: 10px;
+}
    
