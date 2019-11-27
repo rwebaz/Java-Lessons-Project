@@ -1,5 +1,5 @@
 ---
-title: New Title
+title: Shell Gist
 layout: default
 excerpt: Place the introducing line of text ie.) the 'tagline' here ...
 hint: Place the intro paragraph ie.) the 'hypothesis' here ...
