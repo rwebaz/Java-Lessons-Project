@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- Set the base language to English -->
 <html lang="en-us">
-  <!-- Default Layout Template md Dtd 02-05-18 pm -->
+  <!-- Default Layout Template md Dtd 11-12-19 pm -->
   {% include head.htm %}
 
   <body>
@@ -14,7 +14,7 @@
       <h2 class="project-tagline">{{ site.tagline | default: site.github.project_tagline }}</h2>
 
       {% if site.github.is_project_page %}
-        <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
+        <a href="{{ site.github.repository_url }}" class="btn">View Code on GitHub</a>
       {% endif %}
 
       {% include nav.htm %}
@@ -30,7 +30,7 @@
       
       {{ content }}
 
-      {% include icon-github.html %}
+      {% include icon-github-footer.htm %}
         
     </section>
 
