@@ -1,11 +1,11 @@
-#
-# Gemfile ver 111819 Satellite Repo
-#
-# frozen_string_literal: true
 # 
+# Gemfile ver 122120 Satellite Repo
+# 
+# frozen_string_literal: true
+#
 source "https://rubygems.org"
 #
-ruby "2.6.5"
+ruby "2.7.2"
 #
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 #
@@ -37,7 +37,13 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 #
 # From the global Terminal prompt, run the following command statement:
 #
+# Note. The current version of `Bundler` is: 2.2.2
+#
+# However, the working version for most of the repos here is: 1.16.1
+#
 # gem install bundler
+#
+# Note. You only need to install the 'Gem Bundler' program once.
 #
 # Once you have successfully installed the 'Gem Bundler' program to your development machine ...
 #
@@ -49,31 +55,44 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 #
 # which bundler
 #
-# The 'Gem Bundler' program will notify you via the Terminal at the next update operation if an upgrade to your version of the 'Gem Bundler' program is available.
+# The 'Gem Bundler' program will notify you via the Terminal at the next update operation ...
+# if an upgrade to your version of the 'Gem Bundler' program is available.
 # 
 # To upgrade your version of the 'Gem Bundler' program ...
 # 
 # Type the following command at a local Terminal prompt,
-# 
-# gem update bundler
 #
-# Note. You only need to install the 'Gem Bundler' program once.
+# or,
+# 
+# gem update bundler: 2.2.2
+#
+# or,
+#
+# gem install bundler:1.16.1
+#
+# or,
+#
+# # bundle update --bundler
 #
 # It is not necessary to install the 'Gem Bundler' program every time you create a separate repo. 
 #
 # To instantiate an instance of the 'Jekyll server' on your development machine ...
 #
-# You will need to install the 'Ruby Version Manager' onto your development machine.
+# Note. You will need to install the `rnew` "Ruby Version Manager" onto your development machine, as follows:
 #
-# And, then install a copy of 'Ruby ver 2.4.2' with the help of your new 'Ruby Version Manager' working through Homebrew.
-#
-# Note. To avoid the default system Ruby that was factory installed a-way back when you bought your development machine ...
-#
-# Always preface your Terminal session with the following Ruby command:
-#
-# rvm use 2.4.2
+# How to upgrade your machine's copy of Ruby w Home `brew` and `rbenv`
 # 
-# Once you have successfully installed 'Ruby ver 2.4.2' to your development machine ...
+# From a local Terminal window, enter the following set of commands ...
+#
+# $ brew update; where `$` is the Terminal prompt and the statement terminating `semi-colon` (;) is not required
+# $ brew upgrade ruby-build; where `$` is the Terminal prompt and the statement terminating `semi-colon` (;) is not required
+# $ rbenv install 2.7.2; where `$` is the Terminal prompt and the statement terminating `semi-colon` (;) is not required
+# $ rbenv global 2.7.2; where `$` is the Terminal prompt and the statement terminating `semi-colon` (;) is not required
+# $ ruby -v; where `$` is the Terminal prompt and the statement terminating `semi-colon` (;) is not required
+#
+# Note. You may also `fresh install` a copy of 'Ruby ver 2.7.2' with the help of your new 'Ruby Version Manager' working through Homebrew.
+# 
+# Once you have successfully installed (or, upgraded) 'Ruby ver 2.7.2' to your development machine ...
 #
 # You may now install the local 'Jekyll server' program via the following global Terminal command ...
 #
@@ -89,7 +108,7 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 # 
 # Then, comment out the following version statement to retain your superior version copy locally
 #
-gem 'jekyll', '3.8.5'
+gem 'jekyll', '3.9.0'
 #
 # Note. The version of 'Jekyll docs' should match the installed version of 'Jekyll' from above.
 # In other words, you should install the 'jekyll-docs' gem version = 3.6.2 to use the 'jekyll docs' command
@@ -109,7 +128,7 @@ gem 'jekyll', '3.8.5'
 #
 # Then, comment out the following version statement to retain your superior version copy locally
 #
-gem 'jekyll-docs', '3.8.5'
+gem 'jekyll-docs', '3.9.0'
 #
 # To run 'Jekyll docs' locally ...
 #
@@ -188,19 +207,19 @@ gem 'jekyll-docs', '3.8.5'
 # Note. To upgrade all, run `bundle update` from the command line.
 #
 # github-pages, 175 requires activesupport, 429
-gem 'activesupport', '4.2.11.1'
+gem 'activesupport', '6.0.3.1'
 #
 gem 'github-pages-health-check', '1.16.1'
 #
-gem 'github-pages', '201'
+gem 'github-pages', '209'
 #
 # Note. The ''github-markdown' dependency is no longer designated at the online GitHub Pages dependency chart
 # C=> https://pages.github.com/versions/
 # gem 'github-markdown'
 #
-gem 'html-pipeline', '2.12.0'
+gem 'html-pipeline', '2.14.0'
 #
-gem 'jekyll-avatar', '0.6.0'
+gem 'jekyll-avatar', '0.7.0'
 #
 gem 'jekyll-coffeescript', '1.1.1'
 #
@@ -208,58 +227,60 @@ gem 'jekyll-commonmark-ghpages', '0.1.6'
 #
 gem 'jekyll-default-layout', '0.1.4'
 #
-gem 'jekyll-feed', '0.11.0'
+gem 'jekyll-feed', '0.15.1'
 #
 gem 'jekyll-gist', '1.5.0'
 #
-gem 'jekyll-github-metadata', '2.12.1'
+gem 'jekyll-github-metadata', '2.13.0'
 #
-gem 'jekyll-mentions', '1.4.1'
+gem 'jekyll-mentions', '1.6.0'
 #
-gem 'jekyll-optional-front-matter', '0.3.0'
+gem 'jekyll-optional-front-matter', '0.3.2'
 #
 gem 'jekyll-paginate', '1.1.0'
 #
-gem 'jekyll-readme-index', '0.2.0'
+gem 'jekyll-readme-index', '0.3.0'
 #
-gem 'jekyll-redirect-from', '0.14.0'
+gem 'jekyll-redirect-from', '0.16.0'
 #
-gem 'jekyll-relative-links', '0.6.0'
+gem 'jekyll-relative-links', '0.6.1'
 #
-gem 'jekyll-remote-theme', '0.4.0'
+gem 'jekyll-remote-theme', '0.4.2'
 #
 gem 'jekyll-sass-converter', '1.5.2'
 #
-gem 'jekyll-seo-tag', '2.5.0'
+gem 'jekyll-seo-tag', '2.6.1'
 #
-gem 'jekyll-sitemap', '1.2.0'
+gem 'jekyll-sitemap', '1.4.0'
 #
-gem 'jekyll-swiss', '0.4.0'
+gem 'jekyll-swiss', '1.0.0'
 #
 # Uncomment for all satellite repos
 gem 'jekyll-theme-cayman', '0.1.1'
 #
-gem 'jekyll-titles-from-headings', '0.5.1'
+gem 'jekyll-titles-from-headings', '0.5.3'
 #
-gem 'jemoji', '0.10.2'
+gem 'jemoji', '0.12.0'
 #
-gem 'kramdown', '1.17.0'
+gem 'kramdown-parser-gfm', '1.1.0'
 #
-gem 'liquid', '4.0.0'
+gem 'kramdown', '2.3.0'
 #
-gem 'listen', '3.1.5'
+gem 'liquid', '4.0.3'
 #
-gem 'minima', '2.5.0'
+gem 'minima', '2.5.1'
 #
-# Override the GitHub Pages online Dependency Chart Dtd 012418;
-# ver 1.7.2 of the Nokogiri dependency has a Security issue
-gem 'nokogiri', '1.10.4'
-# 
-gem 'rouge', '3.11.0'
+gem 'nokogiri', '1.10.10'
+#
+gem 'rouge', '3.23.0'
 #
 gem 'safe_yaml', '1.0.5'
 #
 gem 'sass', '3.7.4'
+#
+# The following gems are not listed at: https://pages.github.com/versions/
+#
+gem 'listen', '3.1.5'
 #
 gem 'rubyzip', '2.0.0'
 #
