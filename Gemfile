@@ -1,5 +1,5 @@
 # 
-# Gemfile ver 122120 Satellite Repo
+# Gemfile ver 122220 Satellite Repo
 # 
 # frozen_string_literal: true
 #
@@ -206,6 +206,9 @@ gem 'jekyll-docs', '3.9.0'
 #
 # Note. To upgrade all, run `bundle update` from the command line.
 #
+# github-pages, 200 requires rubyzip
+gem 'rubyzip', '2.0.0'
+#
 # github-pages, 175 requires activesupport, 429
 gem 'activesupport', '6.0.3.1'
 #
@@ -213,7 +216,8 @@ gem 'github-pages-health-check', '1.16.1'
 #
 gem 'github-pages', '209'
 #
-# Note. The ''github-markdown' dependency is no longer designated at the online GitHub Pages dependency chart
+# Note. The `github-markdown` dependency is no longer
+# designated at the online GitHub Pages dependency chart
 # C=> https://pages.github.com/versions/
 # gem 'github-markdown'
 #
@@ -280,9 +284,8 @@ gem 'sass', '3.7.4'
 #
 # The following gems are not listed at: https://pages.github.com/versions/
 #
+# gem 'rubyzip', '2.0.0'
 gem 'listen', '3.1.5'
-#
-gem 'rubyzip', '2.0.0'
 #
 # If you have any other Jekyll plugins, put them here ...
 # group: 'jekyll_plugins' do
