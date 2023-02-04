@@ -1,11 +1,12 @@
 # 
-# Gemfile ver 052722 Satellite Repo
+# Gemfile ver 020222 Satellite Repo
 # 
 # frozen_string_literal: true
 #
 source "https://rubygems.org"
 #
-# Script by Parker C=> https://byparker.com/blog/2014/stay-up-to-date-with-the-latest-github-pages-gem/
+# Script by Parker
+# C=> https://byparker.com/blog/2014/stay-up-to-date-with-the-latest-github-pages-gem/
 # require 'json'
 # require 'open-uri'
 # versions = JSON.parse(open('https://pages.github.com/versions.json').read)
@@ -72,10 +73,8 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 # To upgrade your version of the 'Gem Bundler' program ...
 # 
 # Type the following command(s) at a local Terminal prompt, as follows:
-#
-# gem install bundler:2.3.10
 # 
-# gem update bundler:2.3.10
+# gem update bundler: 2.4.6
 #
 # Or,
 #
@@ -123,8 +122,7 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 # 
 # Then, comment out the following version statement to retain your superior version copy locally
 #
-gem 'jekyll', '3.9.2'
-# gem 'jekyll', '4.0.0'
+gem 'jekyll', '3.9.3'
 # gem 'jekyll', '4.2.0'
 #
 # Note. The version of 'Jekyll docs' should match the installed version of 'Jekyll' from above.
@@ -194,9 +192,17 @@ gem 'jekyll', '3.9.2'
 #
 # To start a local 'Jekyll server' instance ...
 #
+# # For satellite repos that do use the `docs` subdirectory to run GitHub pages ...
+#
 # Open up the /docs directory of your repo from inside Visual Studio Code.
 #
 # cd docs
+#
+# For main repos that do NOT use the `docs` subdirectory to run GitHub pages ...
+#
+# Note. Open up the /root directory of your repo from inside Visual Studio Code for a Terminal prompt, as follows:
+#
+# Terminal: New Terminal
 #
 # Next, type the following command at the 'Integrated Terminal View' of Visual Studio Code:
 #
@@ -235,9 +241,13 @@ gem 'jekyll', '3.9.2'
 # github-pages, 200 requires rubyzip
 gem 'rubyzip', '2.0.0'
 #
+# github-pages, 175 requires activesupport, 429
+# gem 'activesupport', '6.0.3.1'
+gem 'activesupport', '6.0.6.1'
+#
 gem 'github-pages-health-check', '1.17.9'
 #
-gem 'github-pages', '226'
+gem 'github-pages', '228'
 #
 # Note. The `github-markdown` dependency is no longer
 # designated at the online GitHub Pages dependency chart
@@ -249,20 +259,18 @@ gem 'i18n', '< 2.0'
 # 
 # gem 'webrick', '1.7.0'
 gem 'webrick', '~> 1.7.0'
+#
 #https://pages.github.com/versions/
+#
 # gem 'github-markdown'
 #
-# html-pipeline, 2.14.1 requires 'activesupport'
-# gem 'activesupport', '6.0.3.1'
-gem 'activesupport', '>= 2'
-# 
-gem 'html-pipeline', '2.14.1'
+gem 'html-pipeline', '2.14.3'
 #
 gem 'jekyll-avatar', '0.7.0'
 #
 gem 'jekyll-coffeescript', '1.1.1'
 #
-gem 'jekyll-commonmark-ghpages', '0.2.0'
+gem 'jekyll-commonmark-ghpages', '0.4.0'
 #
 gem 'jekyll-default-layout', '0.1.4'
 #
@@ -290,15 +298,13 @@ gem 'jekyll-remote-theme', '0.4.3'
 #
 gem 'jekyll-sass-converter', '1.5.2'
 #
-# gem 'jekyll-seo-tag', '2.6.1'
-# gem 'jekyll-seo-tag', '2.7.1'
 gem 'jekyll-seo-tag', '2.8.0'
 #
 gem 'jekyll-sitemap', '1.4.0'
 #
 gem 'jekyll-swiss', '1.0.0'
 #
-# Uncomment for all satellite repos
+# Uncomment this in for all satellite repos (this is a "satellite" repo)
 gem 'jekyll-theme-cayman', '0.2.0'
 #
 gem 'jekyll-titles-from-headings', '0.5.3'
@@ -307,17 +313,14 @@ gem 'jemoji', '0.12.0'
 #
 gem 'kramdown-parser-gfm', '1.1.0'
 #
-# gem 'kramdown', '2.3.0'
 # gem "kramdown", ">= 2.3.1"
 gem 'kramdown', '2.3.2'
 #
-gem 'liquid', '4.0.3'
+gem 'liquid', '4.0.4'
 #
 gem 'minima', '2.5.1'
 #
-# gem 'nokogiri', '1.11.7'
-# gem 'nokogiri', '1.13.4'
-gem 'nokogiri', '>= 1.4'
+gem 'nokogiri', '>= 1.14.1'
 #
 # gem 'rouge', '3.23.0'
 gem 'rouge', '3.26.0'
