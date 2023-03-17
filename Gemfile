@@ -243,7 +243,7 @@ gem 'rubyzip', '2.0.0'
 #
 # github-pages, 175 requires activesupport, 429
 # gem 'activesupport', '6.0.3.1'
-gem 'activesupport', '6.0.6.1'
+gem 'activesupport', '6.1.7.3'
 #
 gem 'github-pages-health-check', '1.17.9'
 #
